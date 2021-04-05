@@ -1,4 +1,4 @@
-import {SmiIfsulApplication} from '../..';
+import {ApiApplication} from '../..';
 import {
   createRestAppClient,
   givenHttpServerConfig,
@@ -14,7 +14,7 @@ export async function setupApplication(): Promise<AppWithClient> {
     // port: +process.env.PORT,
   });
 
-  const app = new SmiIfsulApplication({
+  const app = new ApiApplication({
     rest: restConfig,
   });
 
@@ -27,6 +27,6 @@ export async function setupApplication(): Promise<AppWithClient> {
 }
 
 export interface AppWithClient {
-  app: SmiIfsulApplication;
+  app: ApiApplication;
   client: Client;
 }

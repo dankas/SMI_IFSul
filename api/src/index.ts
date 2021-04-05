@@ -1,9 +1,9 @@
-import {ApplicationConfig, SmiIfsulApplication} from './application';
+import {ApplicationConfig, ApiApplication} from './application';
 
 export * from './application';
 
 export async function main(options: ApplicationConfig = {}) {
-  const app = new SmiIfsulApplication(options);
+  const app = new ApiApplication(options);
   await app.boot();
   await app.start();
 
