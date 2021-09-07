@@ -16,20 +16,20 @@ import {
   requestBody,
 } from '@loopback/rest';
 import {
-  Equipamento,
+  Componente,
   Medicao,
 } from '../models';
-import {EquipamentoRepository} from '../repositories';
+import {ComponenteRepository} from '../repositories';
 
-export class EquipamentoMedicaoController {
+export class ComponenteMedicaoController {
   constructor(
-    @repository(EquipamentoRepository) protected equipamentoRepository: EquipamentoRepository,
+    @repository(ComponenteRepository) protected componenteRepository: ComponenteRepository,
   ) { }
 
-  @get('/equipamentos/{id}/medicaos', {
+  @get('/componentes/{id}/medicaos', {
     responses: {
       '200': {
-        description: 'Array of Equipamento has many Medicao',
+        description: 'Array of Componente has many Medicao',
         content: {
           'application/json': {
             schema: {type: 'array', items: getModelSchemaRef(Medicao)},
@@ -42,38 +42,38 @@ export class EquipamentoMedicaoController {
     @param.path.number('id') id: number,
     @param.query.object('filter') filter?: Filter<Medicao>,
   ): Promise<Medicao[]> {
-    return this.equipamentoRepository.medicoes(id).find(filter);
+    return this.componenteRepository.medicoes(id).find(filter);
   }
 
-  @post('/equipamentos/{id}/medicaos', {
+  @post('/componentes/{id}/medicaos', {
     responses: {
       '200': {
-        description: 'Equipamento model instance',
+        description: 'Componente model instance',
         content: {'application/json': {schema: getModelSchemaRef(Medicao)}},
       },
     },
   })
   async create(
-    @param.path.number('id') id: typeof Equipamento.prototype.IDequip,
+    @param.path.number('id') id: typeof Componente.prototype.IDcomp,
     @requestBody({
       content: {
         'application/json': {
           schema: getModelSchemaRef(Medicao, {
-            title: 'NewMedicaoInEquipamento',
+            title: 'NewMedicaoInComponente',
             exclude: ['IDmed'],
-            optional: ['equipamentoId']
+            optional: ['componenteId']
           }),
         },
       },
     }) medicao: Omit<Medicao, 'IDmed'>,
   ): Promise<Medicao> {
-    return this.equipamentoRepository.medicoes(id).create(medicao);
+    return this.componenteRepository.medicoes(id).create(medicao);
   }
 
-  @patch('/equipamentos/{id}/medicaos', {
+  @patch('/componentes/{id}/medicaos', {
     responses: {
       '200': {
-        description: 'Equipamento.Medicao PATCH success count',
+        description: 'Componente.Medicao PATCH success count',
         content: {'application/json': {schema: CountSchema}},
       },
     },
@@ -90,13 +90,13 @@ export class EquipamentoMedicaoController {
     medicao: Partial<Medicao>,
     @param.query.object('where', getWhereSchemaFor(Medicao)) where?: Where<Medicao>,
   ): Promise<Count> {
-    return this.equipamentoRepository.medicoes(id).patch(medicao, where);
+    return this.componenteRepository.medicoes(id).patch(medicao, where);
   }
 
-  @del('/equipamentos/{id}/medicaos', {
+  @del('/componentes/{id}/medicaos', {
     responses: {
       '200': {
-        description: 'Equipamento.Medicao DELETE success count',
+        description: 'Componente.Medicao DELETE success count',
         content: {'application/json': {schema: CountSchema}},
       },
     },
@@ -105,6 +105,6 @@ export class EquipamentoMedicaoController {
     @param.path.number('id') id: number,
     @param.query.object('where', getWhereSchemaFor(Medicao)) where?: Where<Medicao>,
   ): Promise<Count> {
-    return this.equipamentoRepository.medicoes(id).delete(where);
+    return this.componenteRepository.medicoes(id).delete(where);
   }
 }

@@ -24,7 +24,7 @@ export class Medicao extends Entity {
   @property({
     type: 'number',
   })
-  equipamentoId?: number;
+  componenteId?: number;
 
   constructor(data?: Partial<Medicao>) {
     super(data);

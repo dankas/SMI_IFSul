@@ -2,13 +2,14 @@ import {Entity, model, property, hasMany} from '@loopback/repository';
 import {Medicao} from './medicao.model';
 
 @model()
-export class Equipamento extends Entity {
+export class Componente extends Entity {
   @property({
     type: 'number',
     id: true,
     generated: true,
   })
-  IDequip?: number;
+  IDcomp?: number;
+
 
   @property({
     type: 'string',
@@ -53,21 +54,21 @@ export class Equipamento extends Entity {
   })
   patrimonio?: string;
 
+  @hasMany(() => Medicao)
+  medicoes: Medicao[];
+
   @property({
     type: 'number',
   })
   localizacaoId?: number;
 
-  @hasMany(() => Medicao)
-  medicoes: Medicao[];
-
-  constructor(data?: Partial<Equipamento>) {
+  constructor(data?: Partial<Componente>) {
     super(data);
   }
 }
 
-export interface EquipamentoRelations {
+export interface ComponenteRelations {
   // describe navigational properties here
 }
 
-export type EquipamentoWithRelations = Equipamento & EquipamentoRelations;
+export type ComponenteWithRelations = Componente & ComponenteRelations;

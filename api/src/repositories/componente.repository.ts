@@ -1,21 +1,21 @@
 import {inject, Getter} from '@loopback/core';
 import {DefaultCrudRepository, repository, HasManyRepositoryFactory} from '@loopback/repository';
 import {DbDataSource} from '../datasources';
-import {Equipamento, EquipamentoRelations, Medicao} from '../models';
+import {Componente, ComponenteRelations, Medicao} from '../models';
 import {MedicaoRepository} from './medicao.repository';
 
-export class EquipamentoRepository extends DefaultCrudRepository<
-  Equipamento,
-  typeof Equipamento.prototype.IDequip,
-  EquipamentoRelations
+export class ComponenteRepository extends DefaultCrudRepository<
+  Componente,
+  typeof Componente.prototype.IDcomp,
+  ComponenteRelations
 > {
 
-  public readonly medicoes: HasManyRepositoryFactory<Medicao, typeof Equipamento.prototype.IDequip>;
+  public readonly medicoes: HasManyRepositoryFactory<Medicao, typeof Componente.prototype.IDcomp>;
 
   constructor(
     @inject('datasources.db') dataSource: DbDataSource, @repository.getter('MedicaoRepository') protected medicaoRepositoryGetter: Getter<MedicaoRepository>,
   ) {
-    super(Equipamento, dataSource);
+    super(Componente, dataSource);
     this.medicoes = this.createHasManyRepositoryFactoryFor('medicoes', medicaoRepositoryGetter,);
     this.registerInclusionResolver('medicoes', this.medicoes.inclusionResolver);
   }
