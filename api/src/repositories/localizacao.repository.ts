@@ -1,8 +1,8 @@
 import {inject, Getter} from '@loopback/core';
 import {DefaultCrudRepository, repository, HasManyRepositoryFactory} from '@loopback/repository';
 import {DbDataSource} from '../datasources';
-import {Localizacao, LocalizacaoRelations, Equipamento} from '../models';
-import {EquipamentoRepository} from './equipamento.repository';
+import {Localizacao, LocalizacaoRelations, Componente} from '../models';
+import {ComponenteRepository} from './componente.repository';
 
 export class LocalizacaoRepository extends DefaultCrudRepository<
   Localizacao,
@@ -10,13 +10,13 @@ export class LocalizacaoRepository extends DefaultCrudRepository<
   LocalizacaoRelations
 > {
 
-  public readonly equipamentos: HasManyRepositoryFactory<Equipamento, typeof Localizacao.prototype.IDlocal>;
+  public readonly componentes: HasManyRepositoryFactory<Componente, typeof Localizacao.prototype.IDlocal>;
 
   constructor(
-    @inject('datasources.db') dataSource: DbDataSource, @repository.getter('EquipamentoRepository') protected equipamentoRepositoryGetter: Getter<EquipamentoRepository>,
+    @inject('datasources.db') dataSource: DbDataSource, @repository.getter('ComponenteRepository') protected componenteRepositoryGetter: Getter<ComponenteRepository>,
   ) {
     super(Localizacao, dataSource);
-    this.equipamentos = this.createHasManyRepositoryFactoryFor('equipamentos', equipamentoRepositoryGetter,);
-    this.registerInclusionResolver('equipamentos', this.equipamentos.inclusionResolver);
+    this.componentes = this.createHasManyRepositoryFactoryFor('componentes', componenteRepositoryGetter,);
+    this.registerInclusionResolver('componentes', this.componentes.inclusionResolver);
   }
 }

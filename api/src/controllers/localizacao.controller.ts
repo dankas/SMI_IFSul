@@ -26,7 +26,7 @@ export class LocalizacaoController {
     public localizacaoRepository : LocalizacaoRepository,
   ) {}
 
-  @post('/localiacoes')
+  @post('/localizacoes')
   @response(200, {
     description: 'Localizacao model instance',
     content: {'application/json': {schema: getModelSchemaRef(Localizacao)}},
@@ -47,7 +47,7 @@ export class LocalizacaoController {
     return this.localizacaoRepository.create(localizacao);
   }
 
-  @get('/localiacoes/count')
+  @get('/localizacoes/count')
   @response(200, {
     description: 'Localizacao model count',
     content: {'application/json': {schema: CountSchema}},
@@ -58,7 +58,7 @@ export class LocalizacaoController {
     return this.localizacaoRepository.count(where);
   }
 
-  @get('/localiacoes')
+  @get('/localizacoes')
   @response(200, {
     description: 'Array of Localizacao model instances',
     content: {
@@ -76,7 +76,7 @@ export class LocalizacaoController {
     return this.localizacaoRepository.find(filter);
   }
 
-  @patch('/localiacoes')
+  @patch('/localizacoes')
   @response(200, {
     description: 'Localizacao PATCH success count',
     content: {'application/json': {schema: CountSchema}},
@@ -95,7 +95,7 @@ export class LocalizacaoController {
     return this.localizacaoRepository.updateAll(localizacao, where);
   }
 
-  @get('/localiacoes/{id}')
+  @get('/localizacoes/{id}')
   @response(200, {
     description: 'Localizacao model instance',
     content: {
@@ -111,7 +111,7 @@ export class LocalizacaoController {
     return this.localizacaoRepository.findById(id, filter);
   }
 
-  @patch('/localiacoes/{id}')
+  @patch('/localizacoes/{id}')
   @response(204, {
     description: 'Localizacao PATCH success',
   })
@@ -129,7 +129,7 @@ export class LocalizacaoController {
     await this.localizacaoRepository.updateById(id, localizacao);
   }
 
-  @put('/localiacoes/{id}')
+  @put('/localizacoes/{id}')
   @response(204, {
     description: 'Localizacao PUT success',
   })
@@ -140,7 +140,7 @@ export class LocalizacaoController {
     await this.localizacaoRepository.replaceById(id, localizacao);
   }
 
-  @del('/localiacoes/{id}')
+  @del('/localizacoes/{id}')
   @response(204, {
     description: 'Localizacao DELETE success',
   })
