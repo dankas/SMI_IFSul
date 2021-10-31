@@ -1,14 +1,18 @@
 import {inject, lifeCycleObserver, LifeCycleObserver} from '@loopback/core';
 import {juggler} from '@loopback/repository';
+require('dotenv').config();
+const usrdb = process.env.DB_USR;
+const pswdb = process.env.DB_PSW;
+const hostdb = process.env.DB_HOST;
 
 const config = {
   name: 'db',
   connector: 'mysql',
   url: '',
-  host: '127.0.0.1',
+  host: hostdb,
   port: 3306,
-  user: 'root',
-  password: '',
+  user: usrdb,
+  password: pswdb,
   database: 'smi_db'
 };
 
