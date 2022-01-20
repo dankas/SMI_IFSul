@@ -35,7 +35,7 @@ Para visualização dos dados usa-se grafana configurado para consumir a web API
 
 
 
-![](https://raw.githubusercontent.com/dankas/SMI_IFSul/main/extras/img/grafana.png)
+![](https://raw.githubusercontent.com/dankas/SMI_IFSul/main/extras/img/gafana.jpg)
 
 
 
