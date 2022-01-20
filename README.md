@@ -29,6 +29,13 @@ A interface com os equipamentos de sensoriamento é realizada através de uma ap
 
 
 
+## Visualização.
+
+Para visualização dos dados usa-se grafana configurado para consumir a web API
+
+
+
+![](https://raw.githubusercontent.com/dankas/SMI_IFSul/main/extras/img/grafana.png)
 
 
 
